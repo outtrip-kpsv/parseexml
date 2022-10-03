@@ -8,7 +8,7 @@ public class DataWriter {
     private final StringBuilder data = new StringBuilder();
 
 
-    public DataWriter(ArrayList<DetailItem> detailItems) {
+    public DataWriter(ArrayList<DetailItem> detailItems, String fName) {
         for (DetailItem i : detailItems) {
             data.append(i.getName())
                     .append("\t")
@@ -22,7 +22,7 @@ public class DataWriter {
                     .append(i.getK3())
                     .append(i.getK4())
                     .append("\t")
-                    .append("")
+                    .append((i.getTexture()==1)?"*":"")
                     .append("\t")
                     .append(i.getQuantity())
                     .append("\t")
@@ -31,7 +31,7 @@ public class DataWriter {
                     .append("\t")
                     .append("\n");
         }
-        try (PrintWriter writer = new PrintWriter("notes.txt", "Cp1251")) {
+        try (PrintWriter writer = new PrintWriter(fName, "Cp1251")) {
 
             String encode = new String(data);
             writer.write(String.valueOf(data));

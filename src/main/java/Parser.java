@@ -30,14 +30,15 @@ public class Parser {
         assert wb != null;
         Sheet sheet = wb.getSheetAt(0);
         for (Row row : sheet) {
-            if (!row.getCell(0).getStringCellValue().equals("#")){
+            System.out.println(row.getCell(1).getStringCellValue());
+
                 switch (row.getCell(10).getStringCellValue()) {
                     case "ЛДСП" -> data.get(Material.LDSP).add(new DetailItem(row));
                     case "ДВПО" -> data.get(Material.DVPO).add(new DetailItem(row));
                     case "Стекло" -> data.get(Material.STEKLO).add(new DetailItem(row));
                     default -> data.get(Material.OTHER).add(new DetailItem(row));
                 }
-            }
+
         }
 
         return data;

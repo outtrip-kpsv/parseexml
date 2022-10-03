@@ -11,6 +11,7 @@ public class DetailItem {
     private final Border k3;
     private final Border k4;
     private final int quantity;
+    private final int texture;
 
     public DetailItem(Row row){
         this.name = row.getCell(1).getStringCellValue();
@@ -22,6 +23,7 @@ public class DetailItem {
         this.k3 = borderGet(row.getCell(6));
         this.k4 = borderGet(row.getCell(7));
         this.quantity = (int) row.getCell(9).getNumericCellValue();
+        this.texture = (int) row.getCell(12).getNumericCellValue();
 //        this.laminate = row.getCell(11).getStringCellValue();
     }
 
@@ -40,6 +42,11 @@ public class DetailItem {
 //    public int getDepth() {
 //        return depth;
 //    }
+
+
+    public int getTexture() {
+        return texture;
+    }
 
     public String getK1() {
         return borderChar(k1);
