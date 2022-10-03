@@ -15,6 +15,7 @@ public class DetailItem {
 
     public DetailItem(Row row){
         this.name = row.getCell(1).getStringCellValue();
+
         this.height = (int) row.getCell(2).getNumericCellValue();
         this.width = (int) row.getCell(5).getNumericCellValue();
         this.depth = (int) row.getCell(8).getNumericCellValue();

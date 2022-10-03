@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Parser {
-
     public static HashMap<Material, ArrayList<DetailItem>> parse(String name) {
-
         HashMap<Material, ArrayList<DetailItem>> data = new HashMap<>();
         data.put(Material.LDSP, new ArrayList<>());
         data.put(Material.DVPO, new ArrayList<>());
@@ -22,26 +20,21 @@ public class Parser {
         try {
             in = new FileInputStream(name);
             wb = new XSSFWorkbook(in);
-
         } catch (IOException e) {
+            System.out.println("error");
             e.printStackTrace();
         }
-
         assert wb != null;
         Sheet sheet = wb.getSheetAt(0);
         for (Row row : sheet) {
-            System.out.println(row.getCell(1).getStringCellValue());
-
+            if(row.getCell(1).getStringCellValue().equals("ОБОЗНАЧЕНИЕ")) continue;
                 switch (row.getCell(10).getStringCellValue()) {
                     case "ЛДСП" -> data.get(Material.LDSP).add(new DetailItem(row));
                     case "ДВПО" -> data.get(Material.DVPO).add(new DetailItem(row));
                     case "Стекло" -> data.get(Material.STEKLO).add(new DetailItem(row));
                     default -> data.get(Material.OTHER).add(new DetailItem(row));
                 }
-
         }
-
         return data;
     }
-
 }
